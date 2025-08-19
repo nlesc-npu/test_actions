@@ -23,5 +23,5 @@ jobs:
 
       - name: Check existing files and create one
         run: |
-          ls
+          ls -lhat
           touch $(date +%s).txt
