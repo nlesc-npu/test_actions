@@ -28,6 +28,11 @@ jobs:
           cd benchmarks
           for fname in benchmark-*; do
             echo $fname
-            ./$fname
+            # MMA does not (yet) support RDNA3.5 officially, but runs with RDNA3 override
+            if [[ "${fname}" == "benchmark-mma" ]]; then
+              HSA_OVERRIDE_GFX_VERSION=11.0.0 ./$fname
+            else
+              ./$fname
+            fi
             echo ""
           done
