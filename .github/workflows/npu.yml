@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: self hosted test
+name: npu test
 
 # Controls when the workflow will run
 on:
@@ -16,12 +16,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Check NPU visibility
-        run: xrt-smi examine
+        run: xrt-smi examine --report all
 
-      - name: Check GPU visibility
-        run: amd-smi list
+      - name: Run NPU validation check
+        run: xrt-smi validate --verbose
 
-      - name: Check existing files and create one
-        run: |
-          ls -lhat
-          touch $(date +%s).txt

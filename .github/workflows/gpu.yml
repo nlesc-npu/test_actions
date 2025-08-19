@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: gpu test
+
+# Controls when the workflow will run
+on:
+  push:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: hx370
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check GPU visibility
+        run: amd-smi list
+
+      - name: Build and run cudapeak
+        run: |
+          git clone https://github.com/astron-rd/cudapeak
+          cd cudapeak
+          cmake -S . -B build -DBUILD_WITH_HIP=1
+          cd build
+          make -j
+          cd benchmarks
+          for fname in benchmark-*; do
+            echo $fname
+            ./$fname
+            echo ""
+          done
