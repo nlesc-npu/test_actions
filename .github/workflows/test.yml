@@ -20,3 +20,8 @@ jobs:
 
       - name: Check GPU visibility
         run: amd-smi list
+
+      - name: Check existing files and create one
+        run: |
+          ls
+          touch $(date +%s).txt
