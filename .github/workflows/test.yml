@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Check NPU visibility
-        run: xrt-smi
+        run: xrt-smi examine
 
       - name: Check GPU visibility
         run: amd-smi list
