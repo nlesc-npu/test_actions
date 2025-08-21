@@ -21,3 +21,12 @@ jobs:
       - name: Run NPU validation check
         run: /opt/xilinx/xrt/bin/xrt-smi validate --verbose
 
+      - name: Build and run MLIR-AIE example
+        run: |
+          . /mlir-aie/ironenv/bin/activate
+          . /mlir-aie/utils/env_setup.sh
+
+          git clone https://github.com/Xilinx/mlir-aie mlir-aie
+          cd mlir-aie/programming_examples/basic/passthrough_kernel
+          make
+          make run
