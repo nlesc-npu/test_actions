@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Check NPU visibility
-        run: xrt-smi examine --report all
+        run: /opt/xilinx/xrt/bin/xrt-smi examine --report all
 
       - name: Run NPU validation check
-        run: xrt-smi validate --verbose
+        run: /opt/xilinx/xrt/bin/xrt-smi validate --verbose
 
