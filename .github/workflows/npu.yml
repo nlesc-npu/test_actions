@@ -17,12 +17,10 @@ jobs:
 
       - name: Check NPU visibility
         run: |
-          . /opt/xilinx/xrt/setup.sh
           xrt-smi examine --report all
 
       - name: Run NPU validation check
         run: |
-          . /opt/xilinx/xrt/setup.sh
           xrt-smi validate --verbose
 
       - name: Build and run MLIR-AIE example
