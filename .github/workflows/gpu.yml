@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Env test
+        run: env
+
       - name: Check GPU visibility
         run: amd-smi list
 
